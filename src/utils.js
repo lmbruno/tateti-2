@@ -1,6 +1,36 @@
 const TURNS = {
-  X: "x",
-  O: "o",
+  X: "❌",
+  O: "⭕",
 };
 
-export { TURNS };
+const WINNER_COMBINATIONS = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+
+function checkWinner(newBoard) {
+  for (let combo of WINNER_COMBINATIONS) {
+    const [a, b, c] = combo;
+
+    if (
+      newBoard[a] &&
+      newBoard[a] === newBoard[b] &&
+      newBoard[a] === newBoard[c]
+    ) {
+      return newBoard[a];
+    }
+  }
+  return false;
+}
+
+function checkEndGame(newBoard) {
+  return newBoard.every((square) => square !== null);
+}
+
+export { TURNS, WINNER_COMBINATIONS, checkEndGame, checkWinner };
