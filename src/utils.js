@@ -14,6 +14,17 @@ const WINNER_COMBINATIONS = [
   [2, 4, 6],
 ];
 
+export const saveGameToStorage = ({ board, turn }) => {
+  // guardar aqui partida
+  window.localStorage.setItem("board", JSON.stringify(board));
+  window.localStorage.setItem("turn", turn);
+};
+
+export const resetGameStorage = () => {
+  window.localStorage.removeItem("board");
+  window.localStorage.removeItem("turn");
+};
+
 function checkWinner(newBoard) {
   for (let combo of WINNER_COMBINATIONS) {
     const [a, b, c] = combo;
